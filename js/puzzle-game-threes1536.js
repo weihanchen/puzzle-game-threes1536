@@ -1,0 +1,297 @@
+var colors = new Array("rgb(182,217,217)","rgb(255,102,128)", "rgb(102,204,255)", "white");
+var arrayMetrix;
+var row = 4,col = 4,basicNum = 3,score = 0,addCount = 0;
+var arrayBasicCount = new Array(1,1,1);//一開始平均出現一次，故將count設為1
+var winNumber = 1536;
+var musicPlay = true;
+function Enum() {}  
+Enum.CheckType = {win:0 , lose:1 ,canMove:2} 
+var audio;
+function firstLoad(){
+    audio = document.getElementById('myTune');
+	audio.addEventListener('ended', function () {
+	//等待500毫秒 
+	setTimeout(function () { audio.play(); }, 500);
+	}, false);
+	this.addEventListener( "keydown", doKeyDown, true);
+	Init();
+}
+function Init(){		
+	canvas = document.getElementById("myCanvas");	
+	canvas.focus();
+	score = 0;
+	MetrixInit();
+	scoreText.innerHTML=score;
+	paint();
+}
+function musicControl(){
+	if (musicPlay){
+		audio.pause();
+		document.getElementById("musicImage").src = "picture/musicStop.png";
+	}else{
+		audio.play();
+		document.getElementById("musicImage").src = "picture/musicPlay.png";
+	}
+	musicPlay = !musicPlay;
+}
+function doKeyDown(e) {
+	    if (e.keyCode == 38){ //上 
+		 e.preventDefault();//避免預設事件，如滾動視窗
+           MetrixOn();
+        }
+        else if (e.keyCode == 40){//下
+		 e.preventDefault();
+           MetrixDown();      
+        }
+        else if (e.keyCode == 39){//右
+		 e.preventDefault();
+           MetrixRight();   
+        }
+        else if (e.keyCode == 37){//左
+		 e.preventDefault();
+           MetrixLeft();    
+        }
+		scoreText.innerHTML=score;
+		paint(); 
+		var checkWin = getCheckWin();
+		if (checkWin == Enum.CheckType.win) winMessage();
+		else if (checkWin == Enum.CheckType.lose) loseMessage();
+}
+function MetrixInit(){
+	arrayMetrix = new Array(row);
+	for (var i = 0;i < row;i++){
+		arrayMetrix[i] = new Array(col);
+		for (var j = 0;j < col;j++){
+			arrayMetrix[i][j] = "";
+		}
+	}
+	var size = row*col;
+	var arrayTmp = getRandomArray(size);
+	for (var i = 0;i < basicNum;i++){
+		var value = arrayTmp[i];
+		var x = Math.floor(value/row);
+		var y = value%row;
+		arrayMetrix[x][y] = i + 1;
+	}
+	
+}
+function getRandomArray(size){
+	var arrayTmp = new Array(size);
+	for (var i = 0;i < size;i++) arrayTmp[i] = i;//初始化
+	for (var i = size - 1;i > 0;i--){//亂數分配0~15
+		var x = Math.floor(Math.random()* size);
+		var tmp = arrayTmp[i];
+		arrayTmp[i] = arrayTmp[x];
+		arrayTmp[x] = tmp;
+		
+	}
+	return arrayTmp;
+}
+function MetrixOn(){
+	var addList = [];
+	for (var i = 0;i < col;i++){
+		var addFlag = false;
+		for (var j = 0;j < row-1;j++){
+			var first = arrayMetrix[j][i];
+			var second = arrayMetrix[j+1][i];
+			if (second == "") continue;
+			else if (first==""){
+				arrayMetrix[j][i] = second;
+				arrayMetrix[j+1][i] = first;
+				addFlag = true;
+				continue;
+			}
+			var total = first + second;
+			if (total == basicNum || (first==second && total >= basicNum*2)){//成功合併
+				score+=total;
+				refreshBasicCount(total);
+				arrayMetrix[j][i] = total;
+				arrayMetrix[j+1][i] = "";
+				addFlag = true;
+			}
+		}
+		if (addFlag) addList.push(i);	
+	}
+	if (addList.length > 0) addNewNumber(row-1,getAddForOne(addList));
+}
+function MetrixDown(){
+	var addList = [];
+	for (var i = 0;i < col;i++){
+		var addFlag = false;
+		for (var j = row-1;j > 0;j--){
+			var first = arrayMetrix[j][i];
+			var second = arrayMetrix[j-1][i];
+			if (second == "") continue;
+			else if (first==""){
+				arrayMetrix[j][i] = second;
+				arrayMetrix[j-1][i] = first;
+				addFlag = true;
+				continue;
+			}
+			var total = first + second;
+			if (total == basicNum || (first==second && total >= basicNum*2)){//成功合併
+				score+=total;
+				refreshBasicCount(total);
+				arrayMetrix[j][i] = total;
+				arrayMetrix[j-1][i] = "";
+				addFlag = true;
+			}
+		}
+		if (addFlag) addList.push(i);		
+	}
+	if (addList.length > 0) addNewNumber(0,getAddForOne(addList));
+}
+function MetrixLeft(){
+	var addList = [];
+	for (var i = 0;i < row;i++){
+		var addFlag = false;
+		for (var j = 0;j < col-1;j++){
+			var first = arrayMetrix[i][j];
+			var second = arrayMetrix[i][j+1];
+			if (second == "") continue;
+			else if (first==""){
+				arrayMetrix[i][j] = second;
+				arrayMetrix[i][j+1] = first;
+				addFlag = true;
+				continue;
+			}
+			var total = first + second;
+			if (total == basicNum || (first==second && total >= basicNum*2)){//成功合併
+				score+=total;
+				refreshBasicCount(total);
+				arrayMetrix[i][j] = total;
+				arrayMetrix[i][j+1] = "";
+				addFlag = true;
+			}
+		}
+		if (addFlag) addList.push(i);	
+	}
+	if (addList.length > 0) addNewNumber(getAddForOne(addList),col-1);
+}
+function MetrixRight(){
+	var addList = [];
+	for (var i = 0;i < row;i++){
+		var addFlag = false;
+		for (var j = col-1;j > 0;j--){
+			var first = arrayMetrix[i][j];
+			var second = arrayMetrix[i][j-1];
+			if (second == "") continue;
+			else if (first==""){
+				arrayMetrix[i][j] = second;
+				arrayMetrix[i][j-1] = first;
+				addFlag = true;
+				continue;
+			}
+			var total = first + second;
+			if (total == basicNum || (first==second && total >= basicNum*2)){//成功合併
+				score+=total;
+				refreshBasicCount(total);
+				arrayMetrix[i][j] = total;
+				arrayMetrix[i][j-1] = "";
+				addFlag = true;
+			}
+		}
+		if (addFlag) addList.push(i);
+	}
+	if (addList.length > 0) addNewNumber(getAddForOne(addList),0);
+}
+function getAddForOne(addList){//可能新增的有很多組，但只要其中一組
+	var theIndex = Math.floor(Math.random()*addList.length);
+	return addList[theIndex];
+}
+function refreshBasicCount(total){
+	if (total == basicNum){//total為3則代表1跟2進行合併故將1、2的count-1，3的count+1
+		arrayBasicCount[0] = arrayBasicCount[0]-1;
+		arrayBasicCount[1] = arrayBasicCount[1]-1;
+		arrayBasicCount[2] = arrayBasicCount[2]+1;
+	}else if (total == basicNum*2){//代表兩個3合併了
+		arrayBasicCount[2] = arrayBasicCount[2]-2;
+	}
+}
+function addNewNumber(i,j){//加入新的號碼
+	var theNum = arrayMetrix[i][j];
+	if (theNum == "") {
+		var addNum = getMinBasicCount();
+		arrayMetrix[i][j] = addNum;
+		arrayBasicCount[addNum - 1] = arrayBasicCount[addNum - 1] + 1;
+	}
+}
+function getMinBasicCount(){//將1、2、3中出現最少的取出
+	var minCount = Number.MAX_VALUE,index = 0;
+	var sText = "";
+	for (var i = 0;i < arrayBasicCount.length;i++){
+		if (minCount > arrayBasicCount[i]){
+			minCount = arrayBasicCount[i];
+			index = i;			
+		}		
+	}
+	return index+1;
+}
+function getCheckWin(){
+	var canMove = false;
+	//-----------------由左至右依序掃描--------------------------//
+	for (var i = 0;i < row;i++){
+		for (var j = 0;j < col-1;j++){
+			var first = arrayMetrix[i][j];
+			var second = arrayMetrix[i][j+1];
+			var total = first + second;
+			if (second == winNumber || first == winNumber) return Enum.CheckType.win;//以捷徑運算先判斷後面那格在判斷前面以減少重覆的負擔
+			else if (second == "" || first == "" || total == basicNum || (first==second && total >= basicNum*2)){
+				canMove = true;
+			}
+		}
+	}
+	//-----------------由上上而下依序掃描------------------------//
+	for (var j = 0;j < col;j++){
+		for (var i = 0;i < row-1;i++){
+			var first = arrayMetrix[i][j];
+			var second = arrayMetrix[i+1][j];
+			var total = first + second;
+			if (second == winNumber || first == winNumber) return Enum.CheckType.win;//以捷徑運算先判斷後面那格在判斷前面以減少重覆的負擔
+			else if (second == "" || first == "" || total == basicNum || (first==second && total >= basicNum*2)){
+				canMove = true;
+			}
+		}
+	}
+	//-----------------未達過關分數及沒有可移動的格子-------------//
+	if (canMove) return Enum.CheckType.canMove;
+	return Enum.CheckType.lose;
+}
+function winMessage(){
+	popup("<h1>Congratulation For Passing!</h1>");
+}
+function loseMessage(){
+	
+	
+	popup("<h1>...Game Over...</h1>You have not added to the total to 1536 figures.");
+}
+function paint(){//繪圖函式
+	var iWidth = canvas.width;
+	var iHeight = canvas.height;
+	var c = document.getElementById("myCanvas").getContext('2d');	
+	var rectDiffer = 10;
+	var rectSize = (iWidth - rectDiffer*(col-1)) / col;
+	var y = 0;
+	for (var i = 0;i < row;i++)
+	{
+		var x = 0;
+		for (var j = 0;j < col;j++)
+		{
+			var num = arrayMetrix[i][j];
+			var color = getColor(num);
+			c.fillStyle = color;
+			c.fillRect(x, y, rectSize, rectSize);
+			c.fillStyle = "black";
+			c.textAlign="center";
+			c.font = "bold 65px Arial";
+			c.fillText(num, x + rectSize/2,y + rectSize/3*2);
+			x += rectSize + rectDiffer;
+		}
+		y += rectSize + rectDiffer;
+	}
+}
+function getColor(num){//矩形背景顏色
+	if (num == "") return colors[0];
+	else if (num >= basicNum) return colors[basicNum];
+	else return colors[num];
+}
