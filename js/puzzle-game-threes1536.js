@@ -12,10 +12,12 @@ var musicPlay = true;
 function Enum() {}
 Enum.CheckType = { win: 0, lose: 1, canMove: 2 }
 var audio;
+var scoreText;
 window.onresize = onResize;
 
 function firstLoad() {
     audio = document.getElementById('myTune');
+    scoreText = document.getElementById('scoreText');
     audio.addEventListener('ended', function() {
         //等待500毫秒 
         setTimeout(function() { audio.play(); }, 500);
