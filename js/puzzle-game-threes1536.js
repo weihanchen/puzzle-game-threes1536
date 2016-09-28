@@ -29,7 +29,7 @@ function Init() {
     canvas.focus();
     score = 0;
     MetrixInit();
-    // scoreText.innerHTML = score;
+    scoreText.innerHTML = score;
    onResize();
 }
 
@@ -63,7 +63,7 @@ function doKeyDown(e) {
     } else if (e.keyCode == 37) { //左
         MetrixLeft();
     }
-    // scoreText.innerHTML = score;
+    scoreText.innerHTML = score;
     paint();
     var checkWin = getCheckWin();
     if (checkWin == Enum.CheckType.win) winMessage();
