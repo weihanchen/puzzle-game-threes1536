@@ -32,14 +32,13 @@ function Init() {
     score = 0;
     MetrixInit();
     scoreText.innerHTML = score;
-   onResize();
+    onResize();
 }
 
 function onResize() {
-	console.log('rssize');
-	var container = $('#puzzle-game-threes1536-container');
-	canvas.width = container.width();
-    canvas.height = container.width();
+    var container = document.getElementById('puzzle-game-threes1536-container');
+    canvas.width = container.offsetWidth * 0.95;
+    canvas.height = canvas.width;
     paint();
 }
 
@@ -221,7 +220,7 @@ function getAddForOne(addList) { //可能新增的有很多組，但只要其中
     return addList[theIndex];
 }
 
-function refreshBasicCount(total) {
+function refreshBasicCount(total) {//重新計算數字1~3出現的次數，待優化為MAP
     if (total == basicNum) { //total為3則代表1跟2進行合併故將1、2的count-1，3的count+1
         arrayBasicCount[0] = arrayBasicCount[0] - 1;
         arrayBasicCount[1] = arrayBasicCount[1] - 1;
@@ -233,7 +232,7 @@ function refreshBasicCount(total) {
 
 function addNewNumber(i, j) { //加入新的號碼
     var theNum = arrayMetrix[i][j];
-    if (theNum == "") {
+    if (theNum === "") {
         var addNum = getMinBasicCount();
         arrayMetrix[i][j] = addNum;
         arrayBasicCount[addNum - 1] = arrayBasicCount[addNum - 1] + 1;
@@ -261,7 +260,7 @@ function getCheckWin() {
             var first = arrayMetrix[i][j];
             var second = arrayMetrix[i][j + 1];
             var total = first + second;
-            if (second == winNumber || first == winNumber) return Enum.CheckType.win; 
+            if (second == winNumber || first == winNumber) return Enum.CheckType.win;
             else if (second == "" || first == "" || total == basicNum || (first == second && total >= basicNum * 2)) {
                 canMove = true;
             }
@@ -285,13 +284,18 @@ function getCheckWin() {
 }
 
 function winMessage() {
-    popup("<h1>Congratulation For Passing!</h1>");
+    swal({
+    	title: '<h1>Congratulation For Passing!</h1>',
+    	html: true
+    });
 }
 
 function loseMessage() {
-
-
-    popup("<h1>...Game Over...</h1>You have not added to the total to 1536 figures.");
+	swal({
+		title: '<h1 class="title">...Game Over...</h1>',
+		text: 'You have not added to the total to 1536 figures.',
+		html: true
+	})
 }
 
 function paint() { //繪圖函式

@@ -9,10 +9,7 @@
   "homepage": "",
   "private": true,
   "dependencies": {
-    "animate.css": "^3.5.1",
     "bootstrap": "^3.3.6",
-    "font-awesome": "^4.6.3",
-    "jquery": "^1.11.0",
     "sweetalert": "^1.1.1"
   },
   "ignore": [
