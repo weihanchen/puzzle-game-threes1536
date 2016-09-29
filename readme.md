@@ -1,5 +1,9 @@
 # puzzle-game-threes1536 #
 
+This project use canvas 2d to draw the box of number and responsive web design by bootstrap's grid system.
+
+Demo for html5 canvas basic usage.
+
 ## Demo ##
 
 [demo page](https://weihanchen.github.io/puzzle-game-threes1536/)
@@ -12,8 +16,8 @@
 * default port 8000
 
 ## Dependencies ##
-* [bootstrap]() - responsive ui framework
-* [sweetalert]() - show messages
+* [bootstrap](http://getbootstrap.com/) - responsive ui framework
+* [sweetalert](http://t4t5.github.io/sweetalert/) - show messages
 
 ## Algorithm Flow ##
 
@@ -51,7 +55,7 @@
     
 5. when moved and merged success then add new number 
  
-    `value[row][col]`
+    `value[row][col] = generateNewNumber()`
 
 6. check winner or loser
 	* winner 
