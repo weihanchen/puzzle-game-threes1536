@@ -6,7 +6,7 @@ Demo for html5 canvas basic usage.
 
 ## Demo ##
 
-[demo page](https://weihanchen.github.io/puzzle-game-threes1536/)
+<a href="https://weihanchen.github.io/puzzle-game-threes1536/" target="_blank">demo page</a>
 
 ## Run examples with server ##
 * bower install
