@@ -1,7 +1,7 @@
 var colors = new Array("rgb(182,217,217)", "rgb(255,102,128)", "rgb(102,204,255)", "white");
 var arrayMetrix;
-var row = 4,
-    col = 4,
+var row = 5,
+    col = 5,
     basicNum = 3,
     score = 0,
     addCount = 0;

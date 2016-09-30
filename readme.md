@@ -65,3 +65,8 @@ Demo for html5 canvas basic usage.
 	* loser
 	
 	    `metrics array have no space to add new number.`
+
+
+## To Do ##
+* add firebase to record user's score
+* adjust new number
