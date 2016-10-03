@@ -6,7 +6,7 @@ before_script:
   - npm install -g bower
   - bower install
   - npm run gulp    
-script:
+after_success:
   - git config --global user.email "${GITHUB_MAIL}"
   - git config --global user.name "${GITHUB_USER}"
   - git add .
