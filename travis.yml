@@ -1,13 +1,16 @@
 language: node_js
 node_js:
   - '6.7.0'
-branches:
-  only:
-    - master
-before_script: npm run gulp    
+before_script:
+  - npm install
+  - npm run gulp    
 script:
   - git config --global user.email "willhanchen@gmail.com"
   - git config --global user.name "weihanchen"
   - git add .
-  - git commit -m "Deploy to Github Pages"
+  - MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
+  - git commit -m "Site updated:$MESSAGE"
   - git push --force --quiet "https://${GITHUB_TOKEN}@$github.com/puzzle-game-threes1536.git" master:gh-pages > /dev/null 2>&1
+branches:
+  only:
+    - master
