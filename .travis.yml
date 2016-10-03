@@ -11,7 +11,7 @@ script:
   - git config --global user.name "${GITHUB_USER}"
   - git add .
   - MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
-  - git commit -m "Site updated:$MESSAGE"
+  - git commit -m "Site updated:${MESSAGE}"
   - git push "https://${GITHUB_TOKEN}@github.com/weihanchen/puzzle-game-threes1536.git" master:gh-pages
 branches:
   only:
