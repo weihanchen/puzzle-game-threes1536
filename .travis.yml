@@ -3,6 +3,8 @@ node_js:
   - '6.7.0'
 before_script:
   - npm install
+  - npm install -g bower
+  - bower install
   - npm run gulp    
 script:
   - git config --global user.email "willhanchen@gmail.com"
