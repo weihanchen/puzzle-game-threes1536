@@ -7,8 +7,8 @@ before_script:
   - bower install
   - npm run gulp    
 script:
-  - git config --global user.email "willhanchen@gmail.com"
-  - git config --global user.name "weihanchen"
+  - git config --global user.email "${GITHUB_MAIL}"
+  - git config --global user.name "${GITHUB_USER}"
   - git add .
   - MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
   - git commit -m "Site updated:$MESSAGE"
@@ -16,3 +16,7 @@ script:
 branches:
   only:
     - master
+notification:
+  email:
+    - ${GITHUB_MAIL}
+  on_success: always
