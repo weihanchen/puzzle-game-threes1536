@@ -16,9 +16,3 @@ script:
 branches:
   only:
     - master
-
-
-
-    https://github.com/weihanchen/puzzle-game-threes1536.git
-
-    ${GITHUB_TOKEN}
