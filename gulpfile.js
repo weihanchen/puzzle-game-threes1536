@@ -27,5 +27,5 @@ gulp.task('jsMin', function() {
         })).pipe(gulp.dest('js'))
 });
 
-gulp.task('default', ['js', 'css', 'fonts', 'cleanBowerFiles']); //release version
+gulp.task('default', ['js', 'css', 'fonts','jsMin', 'cleanBowerFiles']); //release version
 // gulp.task('default', ['js', 'css', 'fonts','toDist']); //development version

@@ -1,0 +1,13 @@
+branches:
+  only:
+    - master
+before_script:
+  - git config --global user.email "willhanchen@gmail.com"
+  - git config --global user.name "weihanchen"
+  - git add .
+  - git commit -m "Deploy to Github Pages"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@$github.com/puzzle-game-threes1536.git" master:gh-pages > /dev/null 2>&1
+script: npm run gulp
+env:
+  global:
+    secure: ${GITHUB_TOKEN}
