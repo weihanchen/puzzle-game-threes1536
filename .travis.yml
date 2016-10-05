@@ -8,10 +8,10 @@ script:
   # build
   - npm run gulp 
 deploy:
-  # keep the build we just made with "npm test" (dist/)
+  # keep the build we just made with "npm run gulp"
   provider: script
   skip_cleanup: true
-  script: scripts/deploy.sh
+  script: bash scripts/deploy.sh
 
 branches:
   only:
