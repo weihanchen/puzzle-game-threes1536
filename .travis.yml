@@ -12,7 +12,7 @@ deploy:
   # keep the build we just made with "npm test" (dist/)
   provider: script
   skip_cleanup: true
-  script: ./scripts/deploy.sh
+  script: bash scripts/deploy.sh
 
 branches:
   only:
