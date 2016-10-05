@@ -8,9 +8,6 @@ TARGET_BRANCH="gh-pages"
 git config --global user.email "${GITHUB_MAIL}"
 git config --global user.name "${GITHUB_USER}"
 
-# build (CHANGE THIS)
-npm run gulp 
-
 # deploy
 git add .
 MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
