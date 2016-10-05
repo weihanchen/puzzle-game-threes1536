@@ -11,13 +11,7 @@ deploy:
   # keep the build we just made with "npm test" (dist/)
   provider: script
   skip_cleanup: true
-  script:
-    - git config --global user.email "${GITHUB_MAIL}"
-    - git config --global user.name "${GITHUB_USER}"
-    - git add .
-    - MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
-    - git commit -m "Site updated:${MESSAGE}"
-    - git push --force "https://${GITHUB_TOKEN}@github.com/weihanchen/puzzle-game-threes1536.git" $SOURCE_BRANCH:$TARGET_BRANCH > /dev/null 2>&1
+  script: scripts/deploy.sh
 
 branches:
   only:
