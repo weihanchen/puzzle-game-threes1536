@@ -2,12 +2,10 @@ language: node_js
 node_js:
   - '6.7.0'
 before_script:
-  - npm install
   - npm install -g bower
   - bower install
 script:
   - npm run gulp 
-after_success:
   - bash scripts/deploy.sh
 branches:
   only:
