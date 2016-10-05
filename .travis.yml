@@ -10,14 +10,14 @@ script:
   - npm run gulp 
 deploy:
   # keep the build we just made with "npm test" (dist/)
-  - skip_cleanup: true
-  - provider: script
-  - script: ./scripts/deploy.sh
+  provider: script
+  skip_cleanup: true
+  script: ./scripts/deploy.sh
 
 branches:
   only:
     - master
-    
+
 notification:
   email:
     - ${GITHUB_MAIL}
