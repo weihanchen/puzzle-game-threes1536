@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# variables
+SOURCE_BRANCH="master"
+TARGET_BRANCH="gh-pages"
+
 # config
 git config --global user.email "${GITHUB_MAIL}"
 git config --global user.name "${GITHUB_USER}"
@@ -11,4 +15,4 @@ npm run gulp
 git add .
 MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
 git commit -m "Site updated:${MESSAGE}"
-git push --force --quiet "https://${GITHUB_TOKEN}@github.com/weihanchen/puzzle-game-threes1536.git" master:gh-pages > /dev/null 2>&1
+git push --force --quiet "https://${GITHUB_TOKEN}@github.com/weihanchen/puzzle-game-threes1536.git" $SOURCE_BRANCH:$TARGET_BRANCH > /dev/null 2>&1
