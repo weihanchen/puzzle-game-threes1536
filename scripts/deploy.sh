@@ -15,4 +15,4 @@ npm run gulp
 git add .
 MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
 git commit -m "Site updated:${MESSAGE}"
-git push --force --quiet "https://${GITHUB_TOKEN}@github.com/weihanchen/puzzle-game-threes1536.git" $SOURCE_BRANCH:$TARGET_BRANCH > /dev/null 2>&1
+git push --force "https://${GITHUB_TOKEN}@github.com/weihanchen/puzzle-game-threes1536.git" $SOURCE_BRANCH:$TARGET_BRANCH > /dev/null 2>&1
