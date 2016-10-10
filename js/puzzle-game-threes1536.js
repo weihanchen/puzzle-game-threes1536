@@ -304,6 +304,8 @@ function paint() { //繪圖函式
     var c = document.getElementById("puzzle-game-threes1536").getContext('2d');
     var rectDiffer = 10;
     var rectSize = (iWidth - rectDiffer * (col - 1)) / col;
+    var xOffset = rectSize / 2;
+    var yOffset = rectSize / 3 * 2;
     var y = 0;
     for (var i = 0; i < row; i++) {
         var x = 0;
@@ -314,8 +316,8 @@ function paint() { //繪圖函式
             c.fillRect(x, y, rectSize, rectSize);
             c.fillStyle = "black";
             c.textAlign = "center";
-            c.font = "bold 65px Arial";
-            c.fillText(num, x + rectSize / 2, y + rectSize / 3 * 2);
+            c.font = xOffset + "px Arial bold";
+            c.fillText(num, x + xOffset, y + yOffset);
             x += rectSize + rectDiffer;
         }
         y += rectSize + rectDiffer;
