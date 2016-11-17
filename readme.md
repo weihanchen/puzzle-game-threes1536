@@ -21,7 +21,7 @@ Demo for html5 canvas basic usage.
 
 ## Screenshot ##
 
-![Screenshot](./picture/screenshpt.png)
+![Screenshot](./picture/screenshot.png)
 
 ## Algorithm Flow ##
 
