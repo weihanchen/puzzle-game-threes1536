@@ -19,6 +19,10 @@ Demo for html5 canvas basic usage.
 * [bootstrap](http://getbootstrap.com/) - responsive ui framework
 * [sweetalert](http://t4t5.github.io/sweetalert/) - show messages
 
+## Screenshot ##
+
+![Screenshot](./picture/screenshpt.png)
+
 ## Algorithm Flow ##
 
 1. initial metrics
