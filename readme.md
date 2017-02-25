@@ -4,14 +4,20 @@ This project use canvas 2d to draw the box of number and responsive web design b
 
 Demo for html5 canvas basic usage.
 
+Build with gulp tasks.
+
+## Build Requirements
+* Nodejs 6.0+
+
 ## Demo ##
 
 <a href="https://weihanchen.github.io/puzzle-game-threes1536/" target="_blank">demo page</a>
 
 ## Run examples with server ##
-* npm install
-* npm start
+* install packages：`npm install`
+* start with example：`npm start`
 * default port 8000
+* release： `npm run release`
 
 ## Dependencies ##
 * [bootstrap](http://getbootstrap.com/) - responsive ui framework
@@ -19,7 +25,7 @@ Demo for html5 canvas basic usage.
 
 ## Screenshot ##
 
-![Screenshot](./picture/screenshot.png)
+![Screenshot](./asserts/screenshot.png)
 
 ## Algorithm Flow ##
 

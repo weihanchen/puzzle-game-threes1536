@@ -38,3 +38,7 @@ jspm_packages
 
 # bower
 bower_components
+
+# builded folder
+examples/css/plugins
+examples/js/plugins
