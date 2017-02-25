@@ -1,12 +1,9 @@
 language: node_js
 node_js:
   - '6.7.0'
-before_script:
-  - npm install -g bower
-  - bower install
 script:
   # build
-  - npm run gulp 
+  - npm start
 deploy:
   # keep the build we just made with "npm run gulp"
   provider: script
