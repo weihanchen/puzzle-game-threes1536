@@ -1,5 +1,7 @@
 # puzzle-game-threes1536 #
 
+[![Build Status](https://travis-ci.org/weihanchen/puzzle-game-threes1536.svg?branch=master)](https://travis-ci.org/weihanchen/puzzle-game-threes1536)
+
 This project use canvas 2d to draw the box of number and responsive web design by bootstrap's grid system.
 
 Demo for html5 canvas basic usage.
