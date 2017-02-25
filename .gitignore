@@ -38,9 +38,3 @@ jspm_packages
 
 # bower
 bower_components
-
-# build files
-js/plugins
-js/*.min.js
-css/fonts
-css/plugins
