@@ -3,7 +3,7 @@ node_js:
   - '6.7.0'
 script:
   # build
-  - npm start
+  - npm run release
 deploy:
   # keep the build we just made with "npm run gulp"
   provider: script

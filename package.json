@@ -14,7 +14,8 @@
         "sweetalert": "~1.1.3"
     },
     "scripts": {
-        "start": "gulp && node run.js"
+        "start": "gulp && node run.js",
+        "release": "gulp"
     },
     "author": "will.chen",
     "license": "MIT"
