@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>puzzle-game-threes1536</title>
+    <meta charset="utf-8">
+    <base href="./">
+    <link rel="icon" href="picture/threes1536.ico" type="image/x-icon" />
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="css/plugins/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/plugins/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/plugins/sweetalert.css" />
+    <link rel="stylesheet" type="text/css" href="css/puzzle-game-threes1536.css">
+    <!-- javascript -->
+    <script type="text/javascript" src="js/plugins/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/puzzle-game-threes1536.min.js"></script>
+</head>
+
+<body onLoad="firstLoad();">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4 text-center">
+            <h1 class="title">Puzzle Game Threes 1536</h1>
+
+            <p class="text-success"><strong>Arrow keys [ ↑ ← ↓  → ] to move under box,when box number is 1536 will become the winner,sum of merge box's number is your score,let's challenge it!</strong></p>
+             <br />
+            <button class="btn btn-brown pull-left" onClick="Init();"><strong>New Game</strong></button>
+            <a href="#" onClick="musicControl();"><img id="musicImage" src="picture/musicPlay.png" width="24" height="24" /></a>
+            <div id="scoreText" class="btn btn-primary pull-right" disabled>0</div>
+        </div>
+    </div>
+    <p></p>
+    <div class="row">
+        <div id="puzzle-game-threes1536-container" class="col-md-offset-4 col-md-4 text-center">
+            <canvas class="well" id="puzzle-game-threes1536" tabindex="0">
+                <p> Canvas tag not supported </p>
+            </canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="navbar navbar-default navbar-fixed-bottom text-center">
+            <div class="text-success"><a href="http://asherv.com/threes/">Threes!</a> is a game developed by <a href="https://twitter.com/ashervo">Asher</a> and <a href="https://twitter.com/aeiowu">Greg Wohlwend</a>.</br>
+                This web is designed by <a href="https://github.com/weihanchen" target="_blank">weihanchen</a>,
+                Project and algorithm link to <a href="https://github.com/weihanchen/puzzle-game-threes1536" target="_blank">here!</a>
+            </div>
+        </div>
+    </div>
+    <audio id="myTune" autoplay="autoplay" loop="loop">
+        <source src="audio/Threes.mp3">
+    </audio>
+</body>
+
+</html>
